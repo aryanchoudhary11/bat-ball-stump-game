@@ -1,4 +1,5 @@
+Basics of Javascript used(Without function)
 Rules:-
-Bat defeats ball
-Ball defeats stump
-Sump defeats bat
+1. Bat defeats ball
+2. Ball defeats stump
+3. Stump defeats bat
