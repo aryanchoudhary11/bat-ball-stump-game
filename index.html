@@ -19,9 +19,10 @@
     <h1>Bat Ball Stump Game</h1>
     <button onclick= "
     let userChoice = 'Bat';
+
     let computerChoice = computerMove();
     let result = resultDeclare(userChoice, computerChoice);
-    resultMessage(userChoice, computerChoice, result);">
+    resultMessage(userChoice, computerChoice, result, score);">
       Bat
     </button>
 
@@ -30,7 +31,7 @@
     userChoice = 'Ball';
     computerChoice = computerMove();
     result = resultDeclare(userChoice, computerChoice);
-    resultMessage(userChoice, computerChoice, result);">
+    resultMessage(userChoice, computerChoice, result, score);">
       Ball
     </button>
 
@@ -40,12 +41,17 @@
     userChoice = 'Stump';
     computerChoice = computerMove();
     result = resultDeclare(userChoice, computerChoice);
-    resultMessage(userChoice, computerChoice, result);">
+    resultMessage(userChoice, computerChoice, result, score);">
       Stump
     </button>
 
 
     <script>
+      let score = {
+        Win: 0,
+        Loss: 0,
+        Tie: 0,
+      };
       function computerMove(){
         computerChoice = Math.random() * 3;
         if(computerChoice < 1){
@@ -60,17 +66,23 @@
 
       function resultDeclare(userChoice, computerChoice){
         if((computerChoice == 'Bat' && userChoice == 'Ball') || (computerChoice == 'Stump' && userChoice == 'Bat') || (computerChoice == 'Ball' && userChoice == 'Stump')){
-            result = `Computer won`;
+            score.Loss++;
+            return `Computer won`;
         } else if(computerChoice == userChoice){
-            result = `It's a tie.`;
+            score.Tie++;
+            return `It's a tie.`;
         } else{
-            result = `You won`;
+            score.Win++;
+            return `You won`;
         }
-        return result;
       }
 
       function resultMessage(userChoice, computerChoice, result){
-        alert(`You have choosen ${userChoice}, Computer has choosen ${computerChoice}, and ${result}`);
+        alert(`You have choosen ${userChoice}, Computer has choosen ${computerChoice}, and ${result}
+        
+          Win: ${score.Win}
+          Loss: ${score.Loss}
+          Tie: ${score.Tie}`);
       }
     </script>
   </body>
