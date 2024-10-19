@@ -51,6 +51,11 @@
         Win: 0,
         Loss: 0,
         Tie: 0,
+        displayScore: function(){
+          return `Win: ${score.Win}
+          Loss: ${score.Loss}
+          Tie: ${score.Tie}`
+        }
       };
       function computerMove(){
         computerChoice = Math.random() * 3;
@@ -80,9 +85,7 @@
       function resultMessage(userChoice, computerChoice, result){
         alert(`You have choosen ${userChoice}, Computer has choosen ${computerChoice}, and ${result}
         
-          Win: ${score.Win}
-          Loss: ${score.Loss}
-          Tie: ${score.Tie}`);
+          ${score.displayScore()}`);
       }
     </script>
   </body>
