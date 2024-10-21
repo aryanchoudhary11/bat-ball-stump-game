@@ -4,100 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cricket game</title>
-    <style>
-      body {
-        text-align: center;
-      }
-      button {
-        width: 60px;
-        height: 40px;
-        margin: 5px;
-      }
-    </style>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script> 
   </head>
   <body>
     <h1>Bat Ball Stump Game</h1>
-    <button onclick= "
-    let userChoice = 'Bat';
 
-    let computerChoice = computerMove();
-    let result = resultDeclare(userChoice, computerChoice);
-    resultMessage(userChoice, computerChoice, result, score);">
-      Bat
-    </button>
+      <button class="buttons" onclick= "
+      let userChoice = 'Bat';
+  
+      let computerChoice = computerMove();
+      let result = resultDeclare(userChoice, computerChoice);
+      resultMessage(userChoice, computerChoice, result, score);">
+        <img src="images/bat.png" alt="bat">
+      </button>
+  
+  
+      <button class="buttons" onclick="
+      userChoice = 'Ball';
+      computerChoice = computerMove();
+      result = resultDeclare(userChoice, computerChoice);
+      resultMessage(userChoice, computerChoice, result, score);">
+        <img src="images/ball.png" alt="ball">
+      </button>
+  
+  
+  
+      <button class="buttons" onclick="
+      userChoice = 'Stump';
+      computerChoice = computerMove();
+      result = resultDeclare(userChoice, computerChoice);
+      resultMessage(userChoice, computerChoice, result, score);">
+        <img src="images/stump.png" alt="stump">
+      </button>
 
 
-    <button onclick="
-    userChoice = 'Ball';
-    computerChoice = computerMove();
-    result = resultDeclare(userChoice, computerChoice);
-    resultMessage(userChoice, computerChoice, result, score);">
-      Ball
-    </button>
 
+    <h3 class="user-choice"></h3>
+    <h3 class="computer-choice"></h3>
+    <h3 class="result"></h3>
+    <h3 class="score"></h3>
 
-
-    <button onclick="
-    userChoice = 'Stump';
-    computerChoice = computerMove();
-    result = resultDeclare(userChoice, computerChoice);
-    resultMessage(userChoice, computerChoice, result, score);">
-      Stump
-    </button>
-
-    <button onclick="localStorage.clear()
+    <button class="reset-button" onclick="localStorage.clear()
     resetScore();
-    alert('Reset successful!')">Reset</button>
+    alert('Reset successful!');
+    resultMessage();
+    ">Reset</button>
 
-
-    <script>
-      let scoreStr = localStorage.getItem('Score');
-      let score;
-      resetScore(scoreStr);
-      function resetScore(scoreStr){
-          score = scoreStr ? JSON.parse(scoreStr) : {
-          Win: 0,
-          Loss: 0,
-          Tie: 0,
-        };
-        score.displayScore = function(){
-          return `Win: ${score.Win}
-          Loss: ${score.Loss}
-          Tie: ${score.Tie}`
-        }
-      }
-      function computerMove(){
-        computerChoice = Math.random() * 3;
-        if(computerChoice < 1){
-            computerChoice = 'Bat';
-        } else if(computerChoice >= 1 && computerChoice < 2){
-            computerChoice = 'Ball';
-        } else{
-            computerChoice = 'Stump';
-        }
-        return computerChoice;
-      }
-
-      function resultDeclare(userChoice, computerChoice){
-        if((computerChoice == 'Bat' && userChoice == 'Ball') || (computerChoice == 'Stump' && userChoice == 'Bat') || (computerChoice == 'Ball' && userChoice == 'Stump')){
-            score.Loss++;
-            return `Computer won`;
-        } else if(computerChoice == userChoice){
-            score.Tie++;
-            return `It's a tie.`;
-        } else{
-            score.Win++;
-            return `You won`;
-        }
-      }
-
-      function resultMessage(userChoice, computerChoice, result){
-        localStorage.setItem('Score',JSON.stringify(score));
-
-        alert(`You have choosen ${userChoice}, Computer has choosen ${computerChoice}, and ${result}
-        
-          ${score.displayScore()}`);
-      }
-    </script>
   </body>
 </html>
