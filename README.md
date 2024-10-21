@@ -1,4 +1,4 @@
-Basics of Javascript used
+Basics of Javascript used(functions, methods, objects etc)
 
 Rules:-
 1. Bat defeats ball
